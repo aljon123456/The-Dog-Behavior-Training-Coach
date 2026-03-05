@@ -25,7 +25,8 @@ A modern React frontend for a Django-powered AI platform that provides dog train
 ### Prerequisites
 
 - Node.js 16+ and npm 7+
-- A running Django backend at `http://localhost:8000` (or configured API URL)
+- (Optional) A running Django backend at `http://localhost:8000`
+- **Note**: The app works WITHOUT a backend using mock data!
 
 ### Installation
 
@@ -44,6 +45,49 @@ npm run dev
 ```
 
 The app will open at `http://localhost:3000` with hot module reloading enabled.
+
+## 🧪 Testing WITHOUT Backend (Mock API)
+
+The app includes **built-in dummy data** so you can test it immediately **without needing a backend**!
+
+### Test Accounts (Pre-loaded in mock data):
+
+```
+Email: demo@example.com
+Password: demo123
+
+OR
+
+Email: test@example.com
+Password: test123
+```
+
+### Enable Mock API
+
+The mock API is **already enabled by default**. To confirm, check `.env.local`:
+
+```env
+VITE_USE_MOCK_API=true
+```
+
+### What's Included in Mock Data
+
+- ✅ Pre-created accounts
+- ✅ Sample conversations about dog training
+- ✅ AI responses about: sit command, jumping, recall, leash manners, house training
+- ✅ Full chat functionality
+
+### Switch Back to Real Backend
+
+When your Django backend is ready:
+
+```env
+# In .env.local
+VITE_USE_MOCK_API=false
+VITE_API_URL=http://localhost:8000/api/v1
+```
+
+Then restart: `npm run dev`
 
 ### Build for Production
 
@@ -126,18 +170,77 @@ interface Message {
 - `GET /api/v1/conversations/<id>/` - Fetch specific conversation
 - `POST /api/v1/conversation/<id>/` - Send message to conversation
 
-## 🔌 API Configuration
+## 📛 API Testing Guide (For Teachers/Evaluators)
 
-The API base URL can be configured in two ways:
+### Easy Testing with Mock API
 
-### Option 1: Environment Variable
+**No backend required!** Use the built-in mock API to test everything:
+
+1. Run `npm run dev`
+2. Go to `http://localhost:3000`
+3. Sign in with:
+   - Email: `demo@example.com`
+   - Password: `demo123`
+
+Mock API responds to these keywords:
+- "sit" → Sit command training guide
+- "jump" → Jumping behavior solution
+- "recall" → Come command training
+- "leash" → Leash training tips
+- "house" → House training guide
+- "aggression" → Aggression warning
+- "socializatio**n**" → Puppy socialization guide
+
+### Testing with Real Backend (Django)
+
+When backend is running, create a test user via signup:
+
 ```bash
-# .env.local
-REACT_APP_API_URL=http://your-backend-url:8000/api/v1
+POST http://localhost:8000/api/v1/auth/signup/
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "username": "testuser",
+  "password": "testpass123"
+}
 ```
 
-### Option 2: Default
-The app defaults to `/api/v1` (relative URL) or `http://localhost:8000/api/v1`
+Response should include JWT token:
+```json
+{
+  "token": "eyJhbGci0...",
+  "user": {"id": "1", "email": "test@example.com", "username": "testuser"}
+}
+```
+
+Then test other endpoints with the token in Authorization header:
+
+```bash
+GET http://localhost:8000/api/v1/conversations/
+
+Headers:
+Authorization: Bearer eyJhbGci0...
+
+## 🔌 API Configuration
+
+The API base URL can be configured using environment variables:
+
+### Using Real Backend
+```bash
+# .env.local
+VITE_USE_MOCK_API=false
+VITE_API_URL=http://your-backend-url:8000/api/v1
+```
+
+### Using Mock API (Default - No Backend Needed)
+```bash
+# .env.local
+VITE_USE_MOCK_API=true
+VITE_API_URL=http://localhost:8000/api/v1  # not used when mock is enabled
+```
+
+The app will automatically use the mock API if `VITE_USE_MOCK_API=true`
 
 ## 🐕 Dog Behavior Constraint
 

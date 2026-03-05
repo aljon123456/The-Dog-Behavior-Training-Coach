@@ -17,9 +17,19 @@ interface AuthState {
 
 const getInitialToken = () => {
   try {
-    return typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+    return typeof window !== 'undefined' ? localStorage.getItem('dog_coach_token') : null;
   } catch (e) {
     return null;
+  }
+};
+
+const getInitialAuth = () => {
+  // Only authenticate if token exists
+  try {
+    const token = typeof window !== 'undefined' ? localStorage.getItem('dog_coach_token') : null;
+    return !!token;
+  } catch (e) {
+    return false;
   }
 };
 
@@ -28,7 +38,7 @@ const initialState: AuthState = {
   token: getInitialToken(),
   loading: false,
   error: null,
-  isAuthenticated: !!getInitialToken(),
+  isAuthenticated: getInitialAuth(),
 };
 
 export const signUp = createAsyncThunk(
@@ -40,7 +50,7 @@ export const signUp = createAsyncThunk(
     try {
       const response = await api.post('/auth/signup/', credentials);
       const { token, user } = response.data;
-      localStorage.setItem('token', token);
+      localStorage.setItem('dog_coach_token', token);
       return { token, user };
     } catch (error: any) {
       return rejectWithValue(error.response?.data?.detail || 'Sign up failed');
@@ -57,7 +67,7 @@ export const signIn = createAsyncThunk(
     try {
       const response = await api.post('/auth/signin/', credentials);
       const { token, user } = response.data;
-      localStorage.setItem('token', token);
+      localStorage.setItem('dog_coach_token', token);
       return { token, user };
     } catch (error: any) {
       return rejectWithValue(error.response?.data?.detail || 'Sign in failed');
@@ -73,7 +83,7 @@ const authSlice = createSlice({
       state.user = null;
       state.token = null;
       state.isAuthenticated = false;
-      localStorage.removeItem('token');
+      localStorage.removeItem('dog_coach_token');
     },
   },
   extraReducers: (builder) => {

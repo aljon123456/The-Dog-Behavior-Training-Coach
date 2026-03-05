@@ -192,6 +192,8 @@ export const mockSendMessage = async (
 function generateAIResponse(userMessage: string): string {
   const lowerMessage = userMessage.toLowerCase();
 
+  const houseTrainingResponse = 'House training takes patience and consistency! Take your puppy out frequently (after meals, naps, playtime). Praise enthusiastically when they go outside. Accidents happen - never punish. Clean accidents with enzymatic cleaner. Puppies typically need 8-16 weeks before being reliable.';
+
   const responses: { [key: string]: string } = {
     sit: 'Teaching "sit" is one of the easiest commands! Hold a treat above your dog\'s nose and move it back. As their head follows, their bottom naturally goes down. Say "Sit!" when they sit, reward immediately. Practice this 5-10 times daily for best results.',
 
@@ -204,7 +206,13 @@ function generateAIResponse(userMessage: string): string {
     leash:
       'Leash training should start early with positive associations. Let them sniff and explore on leash. Reward walking beside you with treats. If they pull, stop walking and wait for slack, then continue. Practice in low-distraction areas first. Consistency is key!',
 
-    house: 'House training takes patience and consistency! Take your puppy out frequently (after meals, naps, playtime). Praise enthusiastically when they go outside. Accidents happen - never punish. Clean accidents with enzymatic cleaner. Puppies typically need 8-16 weeks before being reliable.',
+    house: houseTrainingResponse,
+    pop: houseTrainingResponse,
+    outside: houseTrainingResponse,
+    potty: houseTrainingResponse,
+    toilet: houseTrainingResponse,
+    pee: houseTrainingResponse,
+    bathroom: houseTrainingResponse,
 
     aggression:
       'Dog aggression is serious and needs professional help. Please consult a certified professional dog trainer or veterinary behaviorist. In the meantime, avoid triggering situations and ensure everyone\'s safety. Early intervention is crucial!',
@@ -221,5 +229,5 @@ function generateAIResponse(userMessage: string): string {
   }
 
   // Default response
-  return `That\'s a great question about dog training! As a Dog Behavior & Training Coach, I focus on positive reinforcement methods. Could you tell me more specifically what behavior you\'d like to work on? I can provide detailed training steps for:\n\n• Basic commands (sit, stay, come)\n• Behavior problems (jumping, pulling, barking)\n• Puppy training\n• Socialization\n• Leash manners\n\nWhat would you like to focus on?`;
+  return `That\'s a great question about dog training! As a Dog Behavior & Training Coach, I focus on positive reinforcement methods. Could you tell me more specifically what behavior you\'d like to work on? I can provide detailed training steps for:\n\n• Basic commands (sit, stay, come)\n• Behavior problems (jumping, pulling, barking)\n• Puppy training\n• Socialization\n• Leash manners\n• House training / Potty training\n\nWhat would you like to focus on?`;
 }

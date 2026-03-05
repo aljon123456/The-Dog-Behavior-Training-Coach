@@ -28,17 +28,17 @@ const HomeScreen: React.FC = () => {
         {currentConversation ? (
           <>
             {/* Chat Messages */}
-            <div className="flex-1 overflow-y-auto p-4">
+            <div className="flex-1 overflow-y-auto p-4 bg-white">
               <div className="max-w-2xl mx-auto">
                 <div className="mb-4">
-                  <h1 className="text-2xl font-bold text-gray-900">
+                  <h1 className="text-2xl font-bold text-black">
                     {currentConversation.title}
                   </h1>
                 </div>
                 {messageLoading && (
                   <div className="text-center py-8">
-                    <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
-                    <p className="text-gray-500 mt-2">Loading conversation...</p>
+                    <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-black border-t-white"></div>
+                    <p className="text-black mt-2">Loading conversation...</p>
                   </div>
                 )}
                 {currentConversation.messages?.map((message, index) => (

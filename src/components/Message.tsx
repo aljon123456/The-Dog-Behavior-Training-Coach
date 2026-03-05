@@ -13,8 +13,8 @@ export const Message: React.FC<MessageProps> = ({ message }) => {
       <div
         className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
           isUser
-            ? 'bg-blue-500 text-white rounded-br-none'
-            : 'bg-gray-200 text-gray-900 rounded-bl-none'
+            ? 'bg-black text-white rounded-br-none border-2 border-black'
+            : 'bg-white text-black border-2 border-black rounded-bl-none'
         }`}
       >
         <p className="text-sm">{message.content}</p>

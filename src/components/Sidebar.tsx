@@ -20,16 +20,16 @@ export const Sidebar: React.FC = () => {
   };
 
   return (
-    <aside className="w-64 bg-white border-r border-gray-200 flex flex-col h-screen">
+    <aside className="w-64 bg-white border-r-2 border-black flex flex-col h-screen">
       {/* Header */}
-      <div className="p-4 border-b border-gray-200">
-        <h1 className="text-xl font-bold text-gray-900">Dog Coach AI</h1>
+      <div className="p-4 border-b-2 border-black">
+        <h1 className="text-xl font-bold text-black">Dog Coach AI</h1>
       </div>
 
       {/* New Chat Button */}
       <button
         onClick={handleNewChat}
-        className="m-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors flex items-center justify-center gap-2"
+        className="m-4 px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors flex items-center justify-center gap-2 border-2 border-black"
       >
         <span>+</span> New Chat
       </button>
@@ -37,12 +37,12 @@ export const Sidebar: React.FC = () => {
       {/* Conversations List */}
       <div className="flex-1 overflow-y-auto px-4">
         {conversations.length === 0 ? (
-          <p className="text-gray-500 text-sm text-center py-8">
+          <p className="text-black text-sm text-center py-8">
             No conversations yet. Start a new chat!
           </p>
         ) : (
           <div>
-            <h2 className="text-xs font-semibold text-gray-500 uppercase mb-3">History</h2>
+            <h2 className="text-xs font-semibold text-black uppercase mb-3">History</h2>
             {conversations.map((conversation) => (
               <ConversationItem
                 key={conversation._id}
@@ -55,8 +55,8 @@ export const Sidebar: React.FC = () => {
       </div>
 
       {/* Footer */}
-      <div className="border-t border-gray-200 p-4">
-        <p className="text-xs text-gray-500">
+      <div className="border-t-2 border-black p-4">
+        <p className="text-xs text-black">
           Dog Behavior & Training Coach v1.0
         </p>
       </div>

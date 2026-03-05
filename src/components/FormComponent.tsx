@@ -37,7 +37,7 @@ export const FormComponent: React.FC<FormComponentProps> = ({ currentConversatio
   };
 
   return (
-    <form onSubmit={handleSubmit} className="p-4 border-t border-gray-200 bg-white">
+    <form onSubmit={handleSubmit} className="p-4 border-t-2 border-black bg-white">
       <div className="flex gap-2">
         <input
           type="text"
@@ -45,12 +45,12 @@ export const FormComponent: React.FC<FormComponentProps> = ({ currentConversatio
           onChange={(e) => setInput(e.target.value)}
           disabled={isLoading}
           placeholder="Ask about dog training and behavior..."
-          className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-50"
+          className="flex-1 px-4 py-2 border-2 border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-black disabled:bg-gray-100"
         />
         <button
           type="submit"
           disabled={isLoading || !input.trim()}
-          className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:bg-gray-400 transition-colors"
+          className="px-6 py-2 bg-black text-white rounded-lg hover:bg-gray-800 disabled:bg-gray-500 transition-colors border-2 border-black"
         >
           {isLoading ? 'Sending...' : 'Send'}
         </button>

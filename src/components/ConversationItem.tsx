@@ -25,12 +25,12 @@ export const ConversationItem: React.FC<ConversationItemProps> = ({
       onClick={handleClick}
       className={`w-full text-left px-4 py-3 rounded-lg mb-2 transition-colors ${
         isActive
-          ? 'bg-blue-500 text-white'
-          : 'text-gray-700 hover:bg-gray-100'
+          ? 'bg-black text-white border-2 border-black'
+          : 'text-black hover:bg-gray-100 border-2 border-transparent'
       }`}
     >
       <p className="truncate text-sm font-medium">{conversation.title}</p>
-      <p className={`text-xs mt-1 ${isActive ? 'text-blue-100' : 'text-gray-500'}`}>
+      <p className={`text-xs mt-1 ${isActive ? 'text-gray-200' : 'text-gray-600'}`}>
         {conversation.messages?.length || 0} messages
       </p>
     </button>
